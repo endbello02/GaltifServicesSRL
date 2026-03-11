@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galtif SRL | Transporte Ejecutivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Navegación suave */
+        }
+
+        /* Header y Navegación */
+        header {
+            background: #ffffff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #FF0000;
+        }
+
+        .btn-contacto {
+            background: #FF0000;
+            color: #fff !important;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .btn-contacto:hover {
+            background: #757573;
+            color: #fff !important;
+        }
+
+        /* Secciones Generales */
+        section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Hero / Inicio */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 { 
+            font-size: 3rem; 
+            color: #757573; 
+        }
+
+        /* Grid de Tarjetas (Nosotros) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .info-card {
+            background: #8C8C8C; /* Gris secundario */
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            border-top: 5px solid #FF0000;
+        }
+
+        .valores-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .valores-list li::before {
+            content: "✓ ";
+            color: #FF0000;
+            font-weight: bold;
+        }
+
+        /* Servicios */
+        .servicios { 
+            background: #fff; 
+            border-radius: 10px; 
+            margin-top: 20px; 
+        }
+
+        .servicios h2 {
+            text-align: center;
+        }
+
+        .servicios-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .item {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #757573;
+        }
+
+        /* Galería / Flota */
+        .flota-section {
+            max-width: 100%;
+            padding: 60px 0;
+            background: #111;
+            overflow: hidden;
+        }
+
+        .flota-section h2 {
+            text-align: center;
+            color: #fff;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .flota-section .subtitulo {
+            text-align: center;
+            color: #FF0000;
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .galeria-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .galeria-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .galeria-slide {
+            min-width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .galeria-slide img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.85);
+            transition: filter 0.4s, transform 0.6s;
+        }
+
+        .galeria-slide:hover img {
+            filter: brightness(1);
+            transform: scale(1.02);
+        }
+
+        .galeria-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
+            padding: 40px 40px 30px;
+            color: white;
+        }
+
+        .galeria-overlay h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .galeria-overlay p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
+        }
+
+        .galeria-overlay .tag {
+            display: inline-block;
+            background: #FF0000;
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .galeria-controles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 25px 0 10px;
+        }
+
+        .galeria-btn {
+            background: none;
+            border: 2px solid #FF0000;
+            color: #FF0000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .galeria-btn:hover {
+            background: #FF0000;
+            color: #fff;
+        }
+
+        .galeria-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #555;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .dot.active {
+            background: #FF0000;
+            transform: scale(1.3);
+        }
+
+        .galeria-thumbs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 20px 0;
+        }
+
+        .thumb {
+            width: 100px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.3s;
+            filter: grayscale(40%);
+        }
+
+        .thumb.active, .thumb:hover {
+            border-color: #FF0000;
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        @media (max-width: 768px) {
+            .galeria-slide img { height: 260px; }
+            .galeria-overlay h3 { font-size: 1.2rem; }
+            .thumb { width: 70px; height: 45px; }
+        }
+
+        /* Beneficios */
+        .beneficios {
+            background: #fff;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .beneficios h2 {
+            text-align: center;
+        }
+
+        .beneficio-card {
+            background: #f9f9f9;
+            padding: 30px 20px;
+            border-radius: 10px;
+            border-bottom: 4px solid #FF0000;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .beneficio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .beneficio-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .beneficio-card h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .beneficio-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Contacto */
+        .contacto { text-align: center; }
+
+        .contact-links a {
+            display: block;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #FF0000;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* Menú Móvil */
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px; /* Ajustado al alto del header */
+                left: 0;
+                background: #fff;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            nav.show { display: flex; }
+            nav a { 
+                margin: 10px 0; 
+                margin-left: 0;
+                font-size: 1.1rem;
+            }
+            .hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="Galtif Services SRL" style="height: 50px; width: auto;">
+            </div>
+
+            <nav id="menu">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#beneficios">Beneficios</a>
+                <a href="#contacto" class="btn-contacto">Contacto</a>
+            </nav>
+            
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <h1>Bienvenidos a Galtif SRL</h1>
+            <p>Transporte ejecutivo especializado en soluciones de movilidad seguras, cómodas y siempre a tiempo.</p>
+        </section>
+        
+        <section id="nosotros" class="content-section">
+            <div class="grid">
+                <div class="info-card">
+                    <h3>Misión</h3>
+                    <p>Ofrecer traslados seguros y puntuales, comprometiéndonos a brindar calidad y confort en cada viaje.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Visión</h3>
+                    <p>Ser reconocidos por la excelencia del servicio y la modernidad de nuestra flota en el transporte ejecutivo.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Valores</h3>
+                    <ul class="valores-list">
+                        <li>Seguridad y Respeto</li>
+                        <li>Puntualidad</li>
+                        <li>Transparencia</li>
+                        <li>Innovación</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="servicios">
+            <h2>Nuestros Servicios</h2>
+            <div class="servicios-list">
+                <div class="item">
+                    <h4>Traslados ejecutivos</h4>
+                    <p>Para empresas y profesionales.</p>
+                </div>
+                <div class="item">
+                    <h4>Viajes privados</h4>
+                    <p>Discreción y comodidad total.</p>
+                </div>
+                <div class="item">
+                    <h4>Logística de eventos</h4>
+                    <p>Transporte puntual para grupos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERÍA FLOTA -->
+        <div class="flota-section">
+            <h2>NUESTRA FLOTA</h2>
+            <p class="subtitulo">Vehículos de alta gama · Listos para servirte</p>
+
+            <div class="galeria-slider">
+                <div class="galeria-track" id="galeriaTrack">
+                    <div class="galeria-slide">
+                        <img src="imagen1.png" alt="Flota Galtif - Vista trasera">
+                        <div class="galeria-overlay">
+                            <span class="tag">Flota Ejecutiva</span>
+                            <h3>Toyota HiAce — Vista Trasera</h3>
+                            <p>Capacidad para grupos, aire acondicionado y máximo confort en cada trayecto.</p>
+                        </div>
+                    </div>
+                    <div class="galeria-slide">
+                        <img src="imagen2.png" alt="Flota Galtif - Vista lateral">
+                        <div class="galeria-overlay">
+                            <span class="tag">Transporte Privado</span>
+                            <h3>Toyota HiAce — Vista Lateral</h3>
+                            <p>Diseño elegante con la identidad Galtif, garantía de profesionalismo en cada viaje.</p>
+                        </div>
+                    </div>
+                    <div class="galeria-slide">
+                        <img src="imagen3.png" alt="Flota Galtif - Vista frontal">
+                        <div class="galeria-overlay">
+                            <span class="tag">Logística de Eventos</span>
+                            <h3>Toyota HiAce — Vista Frontal</h3>
+                            <p>Unidades modernas, seguras y siempre a tiempo para tus traslados ejecutivos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="galeria-thumbs">
+                <img src="imagen1.png" class="thumb active" onclick="irSlide(0)" alt="thumb1">
+                <img src="imagen2.png" class="thumb" onclick="irSlide(1)" alt="thumb2">
+                <img src="imagen3.png" class="thumb" onclick="irSlide(2)" alt="thumb3">
+            </div>
+
+            <div class="galeria-controles">
+                <button class="galeria-btn" onclick="cambiarSlide(-1)">&#8592;</button>
+                <div class="galeria-dots">
+                    <div class="dot active" onclick="irSlide(0)"></div>
+                    <div class="dot" onclick="irSlide(1)"></div>
+                    <div class="dot" onclick="irSlide(2)"></div>
+                </div>
+                <button class="galeria-btn" onclick="cambiarSlide(1)">&#8594;</button>
+            </div>
+        </div>
+
+        <section id="beneficios" class="beneficios">
+            <h2>¿Por qué elegirnos?</h2>
+            <div class="grid">
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🚗</div>
+                    <h4>Flota Moderna</h4>
+                    <p>Vehículos de alta gama, confortables y en perfecto estado de mantenimiento.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">⏱️</div>
+                    <h4>Puntualidad Garantizada</h4>
+                    <p>Cumplimos con los horarios establecidos para que nunca pierdas una cita o vuelo.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">🔒</div>
+                    <h4>Seguridad Total</h4>
+                    <p>Choferes capacitados y rutas monitoreadas para tu tranquilidad en cada trayecto.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">📞</div>
+                    <h4>Atención 24/7</h4>
+                    <p>Estamos disponibles en todo momento para atender tus necesidades de transporte.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contacto">
+            <h2>Hablemos</h2>
+            <div class="contact-links">
+                <a href="javascript:void(0)" onclick="window.location='mai'+'lto:'+'galtifservices'+'@'+'gmail.com'">galtifservices&#64;gmail.com</a>
+                <a href="tel:8097815148">809-781-5148</a>
+                <a href="https://instagram.com/GaltifServicesSrl" target="_blank">@GaltifServicesSrl</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Galtif Services SRL. | galtifservices&#64;gmail.com | 809-781-5148</p>
+    </footer>
+
+    <script>
+        // Menú móvil
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('show');
+        }
+        document.querySelectorAll('nav a').forEach(link => {
+            link.onclick = () => document.getElementById('menu').classList.remove('show');
+        });
+
+        // Galería slider
+        let slideActual = 0;
+        const totalSlides = 3;
+
+        function actualizarGaleria() {
+            document.getElementById('galeriaTrack').style.transform = `translateX(-${slideActual * 100}%)`;
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === slideActual));
+            document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === slideActual));
+        }
+
+        function cambiarSlide(dir) {
+            slideActual = (slideActual + dir + totalSlides) % totalSlides;
+            actualizarGaleria();
+        }
+
+        function irSlide(index) {
+            slideActual = index;
+            actualizarGaleria();
+        }
+
+        // Auto-play cada 4 segundos
+        setInterval(() => cambiarSlide(1), 4000);
+    </script>
+</body>
+</html>
